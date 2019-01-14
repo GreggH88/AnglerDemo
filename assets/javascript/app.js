@@ -32,11 +32,13 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
 
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     document.body.innerHTML=
-//   }
-// })
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var displayName = user.displayName;
+    $('#authdisabled').removeAttr('disabled');
+$("#loginCard").html("You are currently logged in as " + displayName + "!")
+  }
+})
 
 $("#imageUploadForm").submit(function(e) {
   e.preventDefault();
@@ -67,3 +69,27 @@ $("#imageUploadForm").submit(function(e) {
       });
   };
 });
+
+
+function () {
+  var imageData = String(reader.result);
+  // put your keys in the header
+  var headers = {
+      "Content-type"    : "application/json",
+      "app_id"          : "7d63bc1e",
+      "app_key"         : "d3fa34ac9965ddd79fc3202444189f31"
+  };
+  var payload = { "image" : imageData , 
+                  "gallery_name" : "myGallery", 
+                  "subject_id" : "mySubjectID"};
+  var url = "http://api.kairos.com/enroll";
+  // make request
+  $.ajax(url, {
+      headers  : headers,
+      type: "POST",
+      data: JSON.stringify(payload),
+      dataType: "text"
+  }).done(function(response){
+      console.log(JSON.parse(response));
+  });
+};
