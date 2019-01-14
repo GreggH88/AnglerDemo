@@ -51,8 +51,8 @@ $("#imageUploadForm").submit(function(e) {
       // put your keys in the header
       var headers = {
           "Content-type"    : "application/json",
-          "app_id"          : "7d63bc1e",
-          "app_key"         : "d3fa34ac9965ddd79fc3202444189f31"
+          "app_id"          : "886c7468",
+          "app_key"         : "d064b751e051494ae7259ee88ffba0de"
       };
       var payload = { "image" : imageData , 
                       "gallery_name" : "myGallery", 
