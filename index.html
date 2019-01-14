@@ -38,20 +38,10 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
-            <input type='file' onchange='openFile(event)'>
-            <script>
-              var openFile = function (event) {
-                var input = event.target;
-                var reader = new FileReader();
-                reader.onloadstart = function () {
-                  reader.abort();
-                };
-                reader.onloadend = function () {
-                  console.log(reader.error.message);
-                };
-                reader.readAsDataURL(input.files[0]);
-              };
-            </script>
+            <form method="post" enctype="multipart/form-data" id="imageUploadForm">
+              <input type="file" id="imageUpload" name="imageUpload">
+              <input type=submit id="authdisabled">
+          </form>
           </div>
         </div>
 
@@ -90,3 +80,6 @@
 </body>
 
 </html>
+
+
+

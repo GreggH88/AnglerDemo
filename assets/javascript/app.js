@@ -1,3 +1,5 @@
+$('#authdisabled').attr('disabled','disabled');
+
 var config = {
   apiKey: "AIzaSyB5zgm0cMycq5Go4XObni0kGPvFl8EjRAQ",
   authDomain: "angler-c5724.firebaseapp.com",
@@ -29,3 +31,39 @@ var uiConfig = {
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
+
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     document.body.innerHTML=
+//   }
+// })
+
+$("#imageUploadForm").submit(function(e) {
+  e.preventDefault();
+  var input = $("#imageUpload")[0];
+  var file = input.files[0];
+  var reader  = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = function () {
+      var imageData = String(reader.result);
+      // put your keys in the header
+      var headers = {
+          "Content-type"    : "application/json",
+          "app_id"          : "7d63bc1e",
+          "app_key"         : "d3fa34ac9965ddd79fc3202444189f31"
+      };
+      var payload = { "image" : imageData , 
+                      "gallery_name" : "myGallery", 
+                      "subject_id" : "mySubjectID"};
+      var url = "http://api.kairos.com/enroll";
+      // make request
+      $.ajax(url, {
+          headers  : headers,
+          type: "POST",
+          data: JSON.stringify(payload),
+          dataType: "text"
+      }).done(function(response){
+          console.log(JSON.parse(response));
+      });
+  };
+});
