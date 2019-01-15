@@ -35,13 +35,14 @@
     <div id="heartBreakContainer">
       <div class="row">
         <!-- card for user uploaded image -->
-        <div class="card" style="width: 18rem;">
+        <div class="card" id="previewCard">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <form method="post" enctype="multipart/form-data" id="imageUploadForm">
-              <input type="file" id="imageUpload" name="imageUpload">
+              <input type="file" id="imageUpload" name="imageUpload" />
               <input type=submit id="authdisabled">
           </form>
+          <img id="blah" src="http://placehold.it/180" alt="your image"></img>
           </div>
         </div>
 
