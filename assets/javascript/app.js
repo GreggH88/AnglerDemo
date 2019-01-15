@@ -1,5 +1,10 @@
-$('#authdisabled').attr('disabled','disabled');
+(function () {
 
+
+
+// $('#authdisabled').attr('disabled','disabled');
+
+// firebase config and initialization
 var config = {
   apiKey: "AIzaSyB5zgm0cMycq5Go4XObni0kGPvFl8EjRAQ",
   authDomain: "angler-c5724.firebaseapp.com",
@@ -10,6 +15,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// firebaseui auth config options
 var uiConfig = {
   signInSuccessUrl: 'https://greggh88.github.io/AnglerDemo/',
   signInOptions: [
@@ -36,9 +42,11 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     var displayName = user.displayName;
     $('#authdisabled').removeAttr('disabled');
-$("#loginCard").html("You are currently logged in as " + displayName + "!")
+$("#loginCard").text("You are currently logged in as " + displayName + "!")
   }
 })
+
+
 
 $("#imageUploadForm").submit(function(e) {
   e.preventDefault();
@@ -51,13 +59,13 @@ $("#imageUploadForm").submit(function(e) {
       // put your keys in the header
       var headers = {
           "Content-type"    : "application/json",
-          "app_id"          : "886c7468",
-          "app_key"         : "d064b751e051494ae7259ee88ffba0de"
+          "app_id"          : "5b6685b7",
+          "app_key"         : "0ad64398332e96a02468d3bbf72d6f29"
       };
       var payload = { "image" : imageData , 
                       "gallery_name" : "myGallery", 
                       "subject_id" : "mySubjectID"};
-      var url = "http://api.kairos.com/enroll";
+      var url = "https://api.kairos.com/enroll";
       // make request
       $.ajax(url, {
           headers  : headers,
@@ -66,7 +74,10 @@ $("#imageUploadForm").submit(function(e) {
           dataType: "text"
       }).done(function(response){
           console.log(JSON.parse(response));
+          
       });
   };
 });
+
+}());
 
