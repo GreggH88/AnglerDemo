@@ -75,3 +75,22 @@
   border-width: 5px;
   border-color: #ff4444;
 }
+
+#heartBreakContainer {
+  margin: 0;
+}
+
+#previewCard {
+  position: absolute;
+  width: 400px;
+ 
+}
+
+#blah {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+}
