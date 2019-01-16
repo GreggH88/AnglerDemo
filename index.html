@@ -2,85 +2,256 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Vibur" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css" />
-  <title>Angler</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Vibur" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    </head>
+    <title>Heartbreaker Catfish</title>
 </head>
 
 <body>
+    <div class="backgroundContainer">
+        <div class="jumbotron title">
+            <h1 class="logo display-4"><b>A<span>n</span>g<span>le</span>r</b></h1>
+        </div>
+        <div id="heartBreakContainer">
+            <div class="newImg"></div>
+            <div class="displayImg"></div>
+            </row>
+            <br>
+            <div id="percent-match"></div>
+            <div id="error"></div>
 
-  <div class="backgroundContainer">
-    <!-- jumbotron app title and brief description -->
-    <div class="jumbotron title">
-      <h1 class="logo display-4"><b>A<span>n</span>gl<span>e</span>r</b></h1>
-    </div>
 
-
-    <div class="card" id="loginCard" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <div id="firebaseui-auth-container"></div>
-      </div>
-    </div>
-
-    <!-- main container for comparison api -->
-    <div id="heartBreakContainer">
-      <div class="row">
-        <!-- card for user uploaded image -->
-        <div class="card" id="previewCard">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
             <form method="post" enctype="multipart/form-data" id="imageUploadForm">
-              <input type="file" id="imageUpload" name="imageUpload" />
-              <input type=submit id="authdisabled">
-          </form>
-          <img id="blah" src="http://placehold.it/180" alt="your image"></img>
-          </div>
+                <input type="file" id="imageUpload" name="imageUpload">
+                <input type="submit">
+
+                <div id="newDiv"></div>
+                <div class="row">
+                    <!-- <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card" id="loginCard" style="width: 18rem;">
+                            <div class="card-body ">
+                                <h5 class="card-title">Card title</h5>
+                                <div id="firebaseui-auth-container"></div>
+                            </div>
+                        </div> -->
+
+                        <div class="col-2"></div>
+                    </div>
+
+                    <!-- <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text"> Some quick example text to </p>
+                        </div>
+                    </div> -->
+                </div>
+
         </div>
 
-        <div class="col-2">
-        </div>
 
-        <!-- card for info sent back from comparison api -->
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+        <!-- <div class="card" id="loginCard" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div id="firebaseui-auth-container"></div>
+            </div>
+            <div id="componentContainer">
 
-    <!-- next section container -->
-    <div id="componentContainer">
+            </div> -->
 
-    </div>
+            <footer class="footer mt-auto py-3">
+                <div class=container">
+                    <span class="text-muted">Bootcamp Project 1</span>
+                </div>
+            </footer>
+</body>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
 
-    <!-- sticky footer -->
-    <footer class="footer mt-auto py-3">
-      <div class="container">
-        <span class="text-muted">Bootcamp Project 1</span>
-      </div>
-    </footer>
+    // put your keys in the header
+    var headers = {
+        "Content-type": "application/json",
+        "app_id": "ab39654e",
+        "app_key": "744065baa5876cf9fdb14ac73280e34a"
+    };
+    var headers = {
+                "Content-type": "application/json",
+                "app_id": "70b81cdf",
+                "app_key": "729f0abb1441490c5d08621adfa12ebc"
+            };
+            var payload1 = {
+                "image": "https://res.cloudinary.com/demo/image/upload/w_300/golfer.jpg",
+                "gallery_name": "project1",
+                "subject_id": "Tiger Woods",
+            };
 
-  </div>
+            var payload2 = {
+                "image": "https://cdn.movieweb.com/img.news/NE9sBI5eYx3ecc_1_1.jpg",
+                "gallery_name": "project1",
+                "subject_id": "Ian McKellen",
+            };
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="assets/javascript/app.js"></script>
+            var payload3 = {
+                "image": "http://www.femalefirst.co.uk/image-library/square/500/g/george-clooney---wi05-13.jpg",
+                "gallery_name": "project1",
+                "subject_id": "George Clooney",
+            };
+
+            var payload4 = {
+                "image": "http://www.femalefirst.co.uk/image-library/square/500/j/jennifer-lawrence-premiere-image-2.jpg",
+                "gallery_name": "project1",
+                "subject_id": "Jennifer Lawrence",
+            };
+
+            var payload5 = {
+                "image": "https://transtr.files.wordpress.com/2015/04/al-pacino-in-a-500x500.jpg",
+                "gallery_name": "project1",
+                "subject_id": "Al Pacino",
+            };
+
+            var arr = [payload1, payload2, payload3, payload4, payload5];
+    console.log(arr.image);
+
+
+
+    //console.log(arr);
+    //console.log(arr[0].image);
+
+
+    $(window).load(function (a) {
+
+            
+
+// url
+var url = "http://api.kairos.com/enroll";
+
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+    $("<img />")
+        .attr('src', arr[i].image)
+        .attr('id', arr[i].subject_id)
+        .width("113px").height("113px")
+        .appendTo($("#newDiv"));
+      
+   //$( "<img />" ).click(function() {
+   
+     //.appendTo($(".displayImg"))
+}
+
+    
+
+    $.ajax(url, {
+        headers: headers,
+        type: "POST",
+        data: JSON.stringify(arr[i]),
+        dataType: "text"
+    })
+
+});
+
+//});
+
+// $( "#newDiv" ).click(function() {
+ //       $("<img />")
+// .attr("src", arr)
+//     .appendTo($(".displayImg"))
+//   })
+
+$("#imageUploadForm").submit(function (e) {
+
+$(".newImg").empty();
+$("#error").empty();
+$("percent-match").empty();
+e.preventDefault();
+var input = $("#imageUpload")[0];
+var file = input.files[0];
+var reader = new FileReader();
+reader.readAsDataURL(file);
+reader.onloadend = function () {
+    var imageData = String(reader.result);
+    //console.log(imageData);
+    var image = new Image(),
+            containerWidth = null,
+            containerHeight = null;
+        image.onload = function () {
+            containerWidth = image.width;
+            containerHeight = image.height;
+        }
+        image.src = imageData;
+
+    $(".newImg").append(image);
+
+    var payload = {
+        "image": imageData,
+        "gallery_name": "project1",
+        "threshold" : 0.000
+    };
+    //console.log(payload);
+    var url = "http://api.kairos.com/recognize";
+    // make request
+    $.ajax(url, {
+        headers: headers,
+        type: "POST",
+        data: JSON.stringify(payload),
+        dataType: "text"
+    }).done(function (response) {
+        //console.log(JSON.parse(response));
+        var obj = JSON.parse(response);
+        console.log(obj);   
+      
+        //message if no face detected
+        if (obj.Errors != undefined) {
+          $("#error").append(obj.Errors["0"].Message)
+        } 
+      
+
+        //var objConfidence = obj.images[0].transaction.confidence;
+        //console.log(objConfidence);
+        var objConfidence = obj.images["0"].transaction.confidence;
+        //console.log(objConfidence);
+
+        objName = obj.images["0"].transaction.subject_id;
+        //objName = arr[i].subject_id;
+        console.log(objName);
+
+      //for (var i = 0; i < arr.length; i++) {
+            if (objConfidence > 0.600) {
+            var percentMatch = objConfidence * 100;
+            $("#percent-match").append(percentMatch + "% match to " + objName);
+            }
+            if (objConfidence < 0.600) {
+            $("#percent-match").append("This face is not in the current gallery");
+            }
+            
+        
+
+
+      //}
+
+
+    });
+};
+});
+
+</script>
 </body>
 
 </html>
-
-
-
