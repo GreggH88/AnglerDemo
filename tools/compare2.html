@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>face comparison</title>
+    <script type="text/javascript" src="facepp_sdk/jquery.min.js"></script>
+    <script type="text/javascript" src="facepp_sdk/exif.js"></script>
+    <script type="text/javascript" src="facepp_sdk/facepp_sdk.js"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="common.js"></script>
+    <link rel="stylesheet" type="text/css" href="common.css">
+</head>
+
+<style>
+    #leftbutton{
+        Margin-left: unset;
+        Margin-right: 2%;
+        Width: 40%;
+        Display: inline-block;
+    }
+    #rightbutton{
+        Margin-left: 2%;
+        Width: 40%;
+        Display: inline-block;
+    }
+    #input1{
+        Opacity: 0;
+    }
+    #input2{
+        Opacity: 0;
+    }
+    #preview1{
+        Margin-left: unset;
+        Margin-right: 2%;
+        Width: 40%;
+        Display: inline-block;
+    }
+    #preview2{
+        Margin-left: 2%;
+        Width: 40%;
+        Display: inline-block;
+    }
+    #result{
+        Left: 10%;
+        Top: 30px;
+        Width: 90%;
+    }
+    #text{
+        Left: 10%;
+        Width: 90%;
+        Height: 200px;
+    }
+</style>
+
+<body>
+<div class="container">
+    <div class="button" id="leftbutton" onclick=clickInput1()>Select photo 1</div>
+    <div class="button" id="rightbutton" onclick=clickInput2()>Select photo 2</div>
+
+    <input id="input1" type="file" accept="image/*" onchange="selectImage1(this)"/>
+    <input id="input2" type="file" accept="image/*" onchange="selectImage2(this)"/>
+
+    <img id="preview1" />
+    <img id="preview2" />
+
+    <div id="result"></div>
+
+    <textarea id="text" readonly="readonly"></textarea>
+</div>
+</body>
+
+<script>
+    resetContainer();
+    //Click the button
+    Function clickInput1(){
+        document.getElementById('input1').click();
+    }
+    //Click the button
+    Function clickInput2(){
+        document.getElementById('input2').click();
+    }
+    This.facepp = new FACEPP(APIKEY,APISERET,1);
+</script>
+
+
+<script>
+    var left_file;
+    var right_file;
+    // choose a photo
+    function selectImage1(input){
+        Let imageView = document.getElementById('preview1');
+        Const reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+            //The base64 data of the image
+            Const base64Image = e.target.result;
+            imageView.src = base64Image;
+            // upload the image in binary mode
+            // turn base64 into binary
+            Left_file = facepp.dataURItoBlob(base64Image);
+            startCompare();
+        }
+    }
+    // choose a photo
+    function selectImage2(input){
+        Let imageView = document.getElementById('preview2');
+        Const reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+            //The base64 data of the image
+            const base64Image = e.target.result;
+            imageView.src = base64Image;
+            // upload the image in binary mode
+            // turn base64 into binary
+            right_file = facepp.dataURItoBlob(base64Image);
+            startCompare();
+        }
+    }
+    function startCompare() {
+        If(left_file == null || right_file == null){
+            Return;
+        }
+        Let textView = document.getElementById('text');
+        textView.innerText = '';
+        Const param = {"image_file1":left_file,"image_file2":right_file};
+        this.facepp.compareFace(param, handleSuccess, handleError);
+    }
+    //Successful callback
+    function handleSuccess(e) {
+        console.log(e);
+        const confidence = e.confidence;
+        console.log('confidence' + confidence);
+        
+        const maxthreshold = e.thresholds['1e-5'];
+        const minthreshold = e.thresholds['1e-3'];
+        var result = 'Is it the same person: '; // Is it a person?
+        if (confidence >= maxthreshold){
+            Result += 'high probability';
+        } else if (confidence <= minthreshold){
+            Result += 'low probability';
+        } else {
+            Result += 'possibility is general';
+        }
+        let resultView = document.getElementById('result');
+        resultView.innerText = result;
+        let textView = document.getElementById('text');
+        textView.innerText = JSON.stringify(e,null,"\t");;
+    }
+    //Failed callback
+    function handleError(e){
+        console.log(e);
+        let textView = document.getElementById('text');
+        textView.innerText = JSON.stringify(e,null,"\t");
+    }
+</script>
+</html>

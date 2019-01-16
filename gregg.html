@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Vibur" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css" />
+  <title>Angler</title>
+</head>
+<body>
+  <div class="backgroundContainer">
+    <!-- jumbotron app title and brief description -->
+    <div class="jumbotron title">
+      <h1 class="logo display-4"><b>A<span>n</span>gl<span>e</span>r</b></h1>
+    </div>
+    <div class="card" id="loginCard" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+    <!-- main container for comparison api -->
+    <div class="row">
+      <div class="col">
+        <!-- card for user uploaded image -->
+        <div class="card" id="previewCard">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <form method="post" enctype="multipart/form-data" id="imageUploadForm">
+              <input type="file" id="imageUpload" name="imageUpload" />
+              <input type=submit id="authdisabled">
+            </form>
+            <img id="blah" src="http://placehold.it/180" alt="your image"></img>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+      <!-- card for info sent back from comparison api -->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Alex Trebek</h5>
+          <img class="resizer" src="assets/images/celebImages/alex_trebek.jpg">
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Angelina Jolie</h5>
+          <img class="resizer" src="assets/images/celebImages/angelina_jolie.jpg">
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Brad Pitt</h5>
+          <img class="resizer" src="assets/images/celebImages/brad_pitt.jpg">
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Daisy Ridley</h5>
+          <img class="resizer" src="assets/images/celebImages/daisy_ridley.jpg">
+        </div>
+      </div>
+    </div>
+    <!-- next section container -->
+    <div id="componentContainer">
+    </div>
+    <!-- sticky footer -->
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Bootcamp Project 1</span>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
+</body>
+</html>

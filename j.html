@@ -1,0 +1,85 @@
+<html>
+
+<head>
+  <title>Kairos Upload - Enroll Example</title>
+</head>
+
+<body>
+
+  <form method="post" enctype="multipart/form-data" id="imageUploadForm">
+    <input type="file" id="imageUpload" name="imageUpload">
+    <input type="submit">
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    $("#imageUploadForm").submit(function (e) {
+      e.preventDefault();
+      var input = $("#imageUpload")[0];
+      var file = input.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function () {
+        var imageData = String(reader.result);
+        // put your keys in the header
+        var headers = {
+          "Content-type": "application/json",
+          "app_id": "5e262a08",
+          "app_key": "baddb01ffc804c7df4bb8921e43e6f0d"
+        };
+        var payload = {
+          // "image": "https://facefacts.scot/images/science/Q2_high_health_f.jpg",
+          // "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Nick-Stabile-Face.jpg",
+          // "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+          // "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+          // "image": "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+          // "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+          "image":imageData,
+          "gallery_name": "myGallery", "subject_id": "mySubjectID"
+        };
+        var url = "http://api.kairos.com/enroll";
+        // make request
+        $.ajax(url, {
+          headers: headers,
+          type: "POST",
+          data: JSON.stringify(payload),
+          dataType: "text"
+        }).done(function (response) {
+          console.log(JSON.parse(response));
+          console.log("123")
+          var request = new XMLHttpRequest();
+
+          request.open('POST', 'https://api.kairos.com/recognize');
+
+          request.setRequestHeader('Content-Type', 'application/json');
+          request.setRequestHeader('app_id', '5e262a08');
+          request.setRequestHeader('app_key', 'baddb01ffc804c7df4bb8921e43e6f0d');
+
+          request.onreadystatechange = function () {
+            if (this.readyState === 4) {
+              console.log('Status:', this.status);
+              console.log('Headers:', this.getAllResponseHeaders());
+              console.log('Body:', this.responseText);
+            }
+          };
+
+          var body = {
+            "image": "http://media.kairos.com/kairos-elizabeth.jpg",
+            "image":imageData,
+            "gallery_name": "myGallery"
+          };
+
+          request.send(JSON.stringify(body));
+
+        });
+
+
+
+      };
+    });
+
+
+  </script>
+</body>
+
+</html>

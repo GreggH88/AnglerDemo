@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bujumbura Data</title>
+</head>
+
+<body>
+  <!-- Retrieved data will be dumped here -->
+  <div class="city"></div>
+  <div class="wind"></div>
+  <div class="humidity"></div>
+  <div class="temp"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // This is our API key
+ 
+// put your keys in the header
+var headers = {
+	"Content-type     : application/json",
+	"app_id"          : "7d63bc1e",
+	"app_key"         : "d3fa34ac9965ddd79fc3202444189f31"
+};
+var payload  = { "image" : "https://s3.amazonaws.com/kairos-media/blog-images/kairos-how-it-works-liz-photo.jpg" };
+var url = "http://api.kairos.com/compare";
+// make request 
+$.ajax(url, {
+	headers  : headers,
+    type: "POST",
+    data: JSON.stringify(payload),
+    dataType: "text"
+}).then(function(response){
+	console.log(response);
+});
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<html>
+
+<head>
+    <title>Kairos Upload - Enroll Example</title>
+</head>
+
+<body>
+
+    <div class="newImg"></div>
+
+    <form method="post" enctype="multipart/form-data" id="imageUploadForm">
+        <input type="file" id="imageUpload" name="imageUpload">
+        <input type="submit" id="submitId">
+        <div id="newDiv"></div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            // put your keys in the header
+            var headers = {
+                "Content-type": "application/json",
+                "app_id": "a4f2a212",
+                "app_key": "1d8db54231e61a270364a562d7365985"
+            };
+            var payload1 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEBWJZV2/alex_trebek.jpg",
+                "gallery_name": "project1",
+                "subject_id": "alex"
+            };
+            var payload2 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEGTPETU/angelina_jolie.jpg",
+                "gallery_name": "project1",
+                "subject_id": "angelina"
+            };
+            var payload3 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFDQJMMCG/brad_pitt.jpg",
+                "gallery_name": "project1",
+                "subject_id": "brad"
+            };
+            var payload4 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFDUFMR8R/bruce_jenner.jpg",
+                "gallery_name": "project1",
+                "subject_id": "bruce"
+            };
+            var payload5 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEBWDY3W/caitlyn_jenner.jpg",
+                "gallery_name": "project1",
+                "subject_id": "caitlyn"
+            };
+            var payload6 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFJDHEFR/daisy_ridley.jpg",
+                "gallery_name": "project1",
+                "subject_id": "daisy"
+            };
+            var payload7 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFUPBWTY/eva_mendes.jpg",
+                "gallery_name": "project1",
+                "subject_id": "eva"
+            };
+            var payload8 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFUP8W4E/george_clooney.jpg",
+                "gallery_name": "project1",
+                "subject_id": "george"
+            };
+            var payload9 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFJDKMFH/jackie_chan.jpg",
+                "gallery_name": "project1",
+                "subject_id": "jackie"
+            };
+            var payload10 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFUP2LAJ/jennifer_garner.jpg",
+                "gallery_name": "project1",
+                "subject_id": "jenniferg"
+            };
+            var payload11 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFJE9VLP/jennifer_lawrence.jpg",
+                "gallery_name": "project1",
+                "subject_id": "jeneniferla"
+            };
+            var payload12 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEBWV944/jennifer_lopez.jpg",
+                "gallery_name": "project1",
+                "subject_id": "jenniferlo"
+            };
+            var payload13 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFUPKR9U/jet_li.jpg",
+                "gallery_name": "project1",
+                "subject_id": "jet"
+            };
+            var payload14 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFENSBKNZ/kim_kardashian.jpg",
+                "gallery_name": "project1",
+                "subject_id": "kim"
+            };
+            var payload15 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFFUP5D9C/leonardo_dicaprio.jpg",
+                "gallery_name": "project1",
+                "subject_id": "leonardo"
+            };
+            var payload16 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFDUG9XMX/rosario_dawson.jpg",
+                "gallery_name": "project1",
+                "subject_id": "rosario"
+            };
+            var payload17 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEBXEWN8/shia_labeouf.jpg",
+                "gallery_name": "project1",
+                "subject_id": "shia"
+            };
+            var payload18 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFDUG8E9X/tom_cruise.jpg",
+                "gallery_name": "project1",
+                "subject_id": "tom"
+            };
+            var payload19 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFDQK7Y48/will_smith.jpg",
+                "gallery_name": "project1",
+                "subject_id": "will"
+            };
+            var payload20 = {
+                "image": "https://files.slack.com/files-pri/TE8LHCVLJ-FFEGU96US/zoe_saldana.jpg",
+                "gallery_name": "project1",
+                "subject_id": "zoe"
+            };
+            var arr = [payload1, payload2, payload3, payload4, payload5, payload6, payload7, payload8, payload9, payload10, payload11, payload12, payload13, payload14, payload15, payload16, payload17,
+                payload18, payload19, payload20
+            ];
+
+
+
+
+            //console.log(arr[i].subject_id);
+
+            //console.log(arr);
+            //console.log(arr[0].image);
+
+
+            $(window).load(function (a) {
+
+                // url
+                var url = "http://api.kairos.com/enroll";
+
+                for (var i = 0; i < arr.length; i++) {
+                    //console.log(arr[i]);
+                    $("<img />")
+                        .attr('src', arr[i].image)
+                        .attr('id', arr[i].subject_id)
+                        .width("113px").height("113px")
+                        .appendTo($("#newDiv"));
+
+                    //how would i consolelog this
+
+
+                    $.ajax(url, {
+                        headers: headers,
+                        type: "POST",
+                        data: JSON.stringify(arr[i]),
+                        dataType: "text"
+                    })
+
+                };
+
+            });
+
+            $("#imageUploadForm").submit(function (e) {
+            $(".newImg").empty();
+            e.preventDefault();
+            var input = $("#imageUpload")[0];
+            var file = input.files[0];
+            //console.log(file);
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            //console.log(file);
+            reader.onloadend = function () {
+                var imageData = String(reader.result);
+
+                //console.log(headers);
+                //console.log(imageData);
+                var image = new Image(),
+                    containerWidth = null,
+                    containerHeight = null;
+                image.onload = function () {
+                    containerWidth = image.width;
+                    containerHeight = image.height;
+                }
+                image.src = imageData;
+
+                //console.log(arr[i])
+                //console.log(image);
+                console.log(imageData);
+                //$(".newImg").append(image);
+                //console.log(JSON.parse(response));
+
+                //var galleryName = (arr[i].images[0]
+                //.transaction.gallery_name);
+                //console.log(galleryName);
+                //var subjectId = (obj.images[0].transaction.subject_id);
+                //console.log(headers);
+
+                //console.log(image);
+                var payload = {
+                    "image": imageData,
+                    "gallery_name": "project1",
+                };
+                console.log(payload);
+                var url = "http://api.kairos.com/recognize";
+                // make request
+                $.ajax(url, {
+                    headers: headers,
+                    type: "POST",
+                    data: JSON.stringify(payload),
+                    dataType: "text"
+                }).then(function (response) {
+                    console.log(JSON.parse(response));
+                    //console.log(payload);
+                    //console.log(imageData);
+
+                    //console.log(image);
+                    $(".newImg").append(image);
+                    //console.log(image);
+
+                });
+            };
+        });
+    </script>
+</body>
+
+</html>

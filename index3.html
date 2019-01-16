@@ -1,0 +1,155 @@
+<html>
+
+<head>
+  <title>Kairos Upload - Enroll Example</title>
+</head>
+
+<body>
+
+  <div class="backgroundContainer">
+    <div class="jumbotron title">
+      <h1 class="logo display-4"><b>A<span>ngl</span>e<span>r</b></h1>
+    </div>
+
+    <div id="newDiv"></div>
+    <div class="newImg"></div>
+
+    <form method="post" enctype="multipart/form-data" id="imageUploadForm">
+      <input type="file" id="imageUpload" name="imageUpload">
+      <input type="submit">
+      <div id="heartBreakContainer">
+        <div class="row">
+          <div class="card" style="width:18rem;" </div> <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+
+          <div class="col-2">
+          </div>
+
+          <!-- card for info sent back from comparison api -->
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- next section container -->
+      <div id="componentContainer">
+
+      </div>
+
+      <!-- sticky footer -->
+      <footer class="footer mt-auto py-3">
+        <div class="container">
+          <span class="text-muted">Bootcamp Project 1</span>
+        </div>
+      </footer>
+
+  </div>
+  </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    var headers = {
+      "Content-type": "application/json",
+      "app_id": "d0737061",
+      "app_key": "2b5c79397218a4096dd824e0626286c7"
+    };
+
+    var payload1 = {
+      "image": "https://res.cloudinary.com/demo/image/upload/w_300/golfer.jpg",
+      "gallery_name": "project1",
+      "subject_id": "tiger"
+    };
+
+    var payload2 = {
+      "image": "https://cdn.movieweb.com/img.news/NE9sBI5eYx3ecc_1_1.jpg",
+      "gallery_name": "project1",
+      "subject_id": "ian"
+    };
+
+    var payload3 = {
+      "image": "http://www.femalefirst.co.uk/image-library/square/500/g/george-clooney---wi05-13.jpg",
+      "gallery_name": "project1",
+      "subject_id": "george"
+    };
+
+    var payload4 = {
+      "image": "http://www.femalefirst.co.uk/image-library/square/500/j/jennifer-lawrence-premiere-image-2.jpg",
+      "gallery_name": "project1",
+      "subject_id": "jen"
+    };
+
+    var payload5 = {
+      "image": "https://transtr.files.wordpress.com/2015/04/al-pacino-in-a-500x500.jpg",
+      "gallery_name": "project1",
+      "subject_id": "don",
+    };
+
+    var arr = [payload1, payload2, payload3, payload4, payload5];
+    $(window).load(function (a) {
+      var url = "http://api.kairos.com/enroll";
+      for (var i = 0; i < arr.length; i++) {
+        $("img />")
+          .attr('src', arr[i].image)
+          .width("113px").height("113px")
+          .append($("#newDiv"));
+        $.ajax(url, {
+          headers: headers,
+          type: "POST",
+          data: JSON.stringify(arr[i]),
+          dataType: "text"
+        })
+      };
+    });
+    $("#imageUploadFrom").submit(function (e) {
+      $(".newImg").empty();
+      e.preventDefault();
+      var input = $("#imageUpload")[0];
+      var file = input.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function () {
+        var imageData = String(reader.result);
+        var image = new Image(),
+          containerWidth = null,
+          containerHeight = null;
+        image.onload = function () {
+          containerWidth = image.width;
+          containerHeight = image.Height;
+        }
+        image.src = imageData;
+        console.log(imageData);
+        var payload = {
+          "image": imageData,
+          "gallery_name": "project1",
+        };
+        var url = "http://api.kairos.com/recognize";
+        $.ajax(url, {
+          headers: headers,
+          type: "POST",
+          data: JSON.stringify(payload),
+          dataType: "text"
+        }).then(function(response) {
+          conole.log(JSON.pars(response));
+          $(".newImg").sppend(image);
+        });
+      };
+    });
+
+
+  </script>
+</body>
+
+</html>
